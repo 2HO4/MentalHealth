@@ -27,7 +27,7 @@ def setup_figure(self: pd.DataFrame):
         dpi=100,
         figsize=(min(16, 4 * n_cols), min(16, 4 * n_rows))
     )
-    axes = axes.flatten()
+    axes = np.array(axes).flatten()
     
     return cols_numb, figure, axes
 
@@ -70,7 +70,7 @@ def boxenplots(self, color='white', color_points='black', **kwargs):
     # Plot a boxen plot for each column
     for i, col in enumerate(cols_numb):
         sns.boxenplot(self[col], ax=axes[i], color=color, **kwargs)
-        sns.stripplot(data=self[col], size=4, color=color_points, alpha=0.2, ax=axes[i])
+        sns.stripplot(data=self[col], size=4, pallete=f'dark:{color_points}', alpha=0.2, ax=axes[i])
         axes[i].set_title(col, fontsize=12)
         axes[i].set_ylabel('')
         axes[i].set_xticklabels([])
