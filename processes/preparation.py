@@ -71,15 +71,15 @@ def recap(self, n_rows=10):
     print(f"Number of Observations: {self.shape[0]}; \n"
           f"Number of Features: {self.shape[1]}.")
     
-    print(f"- Categorical features: {', '.join(self.cols_name)}; \n"
-          f"- Numerical features: {', '.join(self.cols_numb)}.")
+    print(f"- Categorical features: {', '.join(map(str, self.cols_name))}; \n"
+          f"- Numerical features: {', '.join(map(str, self.cols_numb))}.")
     
     return self.head(n_rows)
 
 
 @add_method(pd.DataFrame)
 def update_cols(self):
-    # List of the names of columns with quantitative data
+    # List of the names of columns with qualitative data
     self.cols_name = self.select_dtypes(include='object').columns.tolist()
     # List of the names of columns with quantitative data
     self.cols_numb = self.select_dtypes(include='number').columns.tolist()
